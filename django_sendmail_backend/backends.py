@@ -1,3 +1,4 @@
+
 """
 Sendmail email backend class.
 
@@ -31,7 +32,7 @@ class EmailBackend(BaseEmailBackend):
         try:
             # -t: Read message for recipients
             ps = Popen(['/usr/sbin/sendmail', '-t'], stdin=PIPE, stderr=PIPE)
-            ps.stdin.write(email_message.message().as_bytes())
+            ps.stdin.write(email_message.message().as_string())
             (stdout, stderr) = ps.communicate()
         except:
             if not self.fail_silently:
